@@ -6,6 +6,8 @@ User = get_user_model()
 
 
 class TestUserSignUp(TestCase):
+    """Класс тестирования работы с пользователями"""
+
     def setUp(self) -> None:
         self.client = APIClient()
 
@@ -18,6 +20,5 @@ class TestUserSignUp(TestCase):
         }
         self.client.post('/api/auth/signup/', data)
 
-        self.assertTrue(User.objects.filter(username='test_user').exists())
-
-
+        expected = User.objects.filter(username='test_user').exists()
+        self.assertTrue(expected)
